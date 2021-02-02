@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserFlowsTest < ActionDispatch::IntegrationTest
+class UserFriendshipsTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
