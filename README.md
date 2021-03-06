@@ -91,3 +91,14 @@ TBA
 
 TBA
 
+---
+
+# Changes addressed
+
+- [ ] Test if invitation works
+  - [ ] Create two users with ```rails c```
+  - [ ] Test invitations between them (review table to check on duplicates  
+- [ ] Enable views to friendship_request button
+  - [ ] Include pending request transitional button state
+- [ ] Create friendships feature test
+- [ ] Create friendships views test
