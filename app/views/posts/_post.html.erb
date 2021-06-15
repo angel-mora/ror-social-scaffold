@@ -2,6 +2,8 @@
   <div>
     <div class='post-attribution' >
       <%= link_to post.user.name, user_path(post.user), class: 'post-author' %>
+      <button>Add Friend</button>
+
     </div>
     <div class='post-liking'>
       <span class='post-date'> <%= post.created_at.strftime("%Y/%m/%d") %> </span>
