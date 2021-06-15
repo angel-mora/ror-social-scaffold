@@ -20,10 +20,12 @@ RSpec.describe User, type: :feature do
     end
     it 'updates Friendship button pending status' do
       visit users_path
+      # click in 'Add Friend'
       expect(page).to have_content('Pending')
     end
     it 'updates Friendship button delete status' do
       visit users_path
+      # Accept invitation
       expect(page).to have_content('Delete Friend')
     end
   end
