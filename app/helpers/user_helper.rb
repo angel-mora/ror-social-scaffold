@@ -1,4 +1,4 @@
-module UsersHelper
+module UserHelper
   def user_info(user)
     return if current_user?(user)
 
