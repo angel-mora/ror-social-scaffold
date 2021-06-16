@@ -15,10 +15,9 @@ class FriendshipsController < ApplicationController
     @friendship.confirmed = true
 
     if @friendship.save
-      @friendship.confirm_friend
-      redirect_to request.referrer, notice: 'Friend request was successfully confirmed.'
+      redirect_to user_path(current_user.id), notice: 'Friend request was successfully confirmed.'
     else
-      redirect_to request.referrer, alert: @friendship.error.full_messages.join('. ').to_s
+      redirect_to user_path(current_user.id), alert: @friendship.error.full_messages.join('. ').to_s
     end
   end
 
