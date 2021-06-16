@@ -14,19 +14,9 @@ RSpec.describe User, type: :feature do
       fill_in 'user[password]', with: user1.password
       click_button 'Log in'
     end
-    it 'shows the right content for user show' do
-      visit users_path
-      expect(page).to have_content('Add Friend')
-    end
-    it 'updates Friendship button pending status' do
-      visit users_path
-      # click in 'Add Friend'
-      expect(page).to have_content('Pending')
-    end
-    it 'updates Friendship button delete status' do
-      visit users_path
-      # Accept invitation
-      expect(page).to have_content('Delete Friend')
+    it 'shows the right content for user index' do
+      visit users_path(user2)
+      expect(page).to have_button('Add Friend')
     end
   end
 end
