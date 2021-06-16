@@ -19,23 +19,19 @@ class User < ApplicationRecord
     friends_array.compact
   end
 
-  # Users who have yet to confirme friend requests
-  def pending_friends
-    friendships.map { |friendship| friendship.friend unless friendship.confirmed }.compact
+  def friendship_created?(friend)
+    friendships.find_by(friend_id: friend.id).nil? && created_inverse?(friend)
   end
 
-  # Users who have requested to be friends
-  def friend_requests
-    inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
+  def created_inverse?(friend)
+    friend.friendships.find_by(friend_id: id).nil?
   end
 
-  def confirm_friend(user)
-    friendship = inverse_friendships.find { |inverse_friendship| inverse_friendship.user == user }
-    friendship.confirmed = true
-    friendship.save
+  def friendship_invited?(user)
+    !friendships.find_by(user_id: user.id, confirmed: false).nil?
   end
 
-  def friend?(user)
-    friends.include?(user)
+  def confirm_inverse?(friend)
+    !friendships.find_by(friend_id: friend.id, confirmed: false).nil?
   end
 end
