@@ -7,10 +7,6 @@
 - Ruby v2.7.0
 - Ruby on Rails v5.2.4
 
-## Live Demo
-
-TBA
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -59,18 +55,12 @@ Open `http://localhost:3000/` in your browser.
 ### Run tests
 
 ```
-    rpsec --format documentation
+    rpsec
 ```
-
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
-### Deployment
-
-TBA
 
 ## Authors
 
-TBA
+Github: @angel-mora
 
 ## 🤝 Contributing
 
@@ -84,20 +74,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
-
-## 📝 License
-
-TBA
-
----
-
-# Changes addressed
-
-- [ ] Test if invitation works
-  - [ ] Create two users with ```rails c```
-  - [ ] Test invitations between them (review table to check on duplicates  
-- [ ] Enable views to friendship_request button
-  - [ ] Include pending request transitional button state
-- [ ] Create friendships feature test
-- [ ] Create friendships views test
+Thanks to Microverse!
