@@ -2,7 +2,9 @@ module UserHelper
   def user_info(user)
     return if current_user?(user)
 
+    # rubocop:disable Lint/UselessAssignment
     request = Friendship.find_by(user_id: user.id, friend_id: current_user.id, confirmed: false)
+    # rubocop:enable Lint/UselessAssignment
     if current_user.friends.include?(user)
       render partial: 'user', locals: { user: user }
     elsif current_user.pending_friends.include?(user)
