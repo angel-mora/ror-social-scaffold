@@ -1,0 +1,10 @@
+<li>
+  <div class="d-flex">
+    <h2>Name:</h2>
+    <%= user.name %>
+  </div>
+  <span>
+    <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+  </span>
+  <p>You have already invited this person to be your friend.</p>
+</li>
