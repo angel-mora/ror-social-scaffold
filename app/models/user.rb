@@ -4,9 +4,42 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: true }
 
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :friendships
+  has_many :inverse_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :confirmed_friendships, -> { where confirmed: true }, class_name: 'Friendship', foreign_key: 'user_id'
+  has_many :friends, through: :confirmed_friendships
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'user_id'
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+  has_many :friend_requests, through: :inverse_friendships, source: :user
+
+  def friends_and_own_posts
+    Post.ordered_by_most_recent.where(user: friends.push(self))
+  end
+
+  def friends
+    friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
+    friends_array += inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
+    friends_array.compact
+  end
+
+  def friendship_created?(friend)
+    friendships.find_by(friend_id: friend.id).nil? && created_inverse?(friend)
+  end
+
+  def created_inverse?(friend)
+    friend.friendships.find_by(friend_id: id).nil?
+  end
+
+  def friendship_invited?(user)
+    !friendships.find_by(user_id: user.id, confirmed: false).nil?
+  end
+
+  def confirm_inverse?(friend)
+    !friendships.find_by(friend_id: friend.id, confirmed: false).nil?
+  end
 end
