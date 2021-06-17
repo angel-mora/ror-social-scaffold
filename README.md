@@ -19,6 +19,10 @@ Ruby: 2.7.1
 Rails: 5.2.3
 Postgres: >=9.5
 
+# Live Preview
+
+http://microverse-ror-social.herokuapp.com/
+
 ### Setup
 
 Install gems with:
